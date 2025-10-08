@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | BCA Burger House</title>
+    <link rel="icon" href="resource/logo.jpg" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand">
+          <img src="resource/logo.jpg" alt="BCA Burger Logo" class="logo" />
+          <span>BCA Burger</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="menu.html" class="active">Menu</a>
+          <a href="event.html">Events</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="menu-hero">
+      <div class="hero-content">
+        <h1>Our Delicious Menu</h1>
+        <p>
+          Freshly grilled, served hot & packed with flavor taste the best
+          burgers in town!
+        </p>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <div class="search-container">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search your favorite burger..."
+        class="search-input"
+      />
+      <button id="searchBtn" class="search-btn">Search</button>
+    </div>
+
+    <!-- Menu Grid -->
+    <section class="menu-grid" id="menuGrid">
+      <div class="menu-card">
+        <img src="resource/chi.jpg" alt="Chicken Burger" />
+        <h3>Chicken Burger</h3>
+        <p>Juicy grilled chicken with fresh veggies.</p>
+        <span class="price">Rs. 350</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/veg.jpg" alt="Veg Burger" />
+        <h3>Veg Burger</h3>
+        <p>A wholesome vegetarian delight.</p>
+        <span class="price">Rs. 280</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/logo.jpg" alt="Buff Burger" />
+        <h3>Buff Burger</h3>
+        <p>Succulent buff patty with special sauce.</p>
+        <span class="price">Rs. 400</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/cheese.jpg" alt="Cheese Burger" />
+        <h3>Cheese Burger</h3>
+        <p>Loaded with melted cheese & crispy veggies.</p>
+        <span class="price">Rs. 380</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/bean.jpg" alt="Bean Burger" />
+        <h3>Bean Burger</h3>
+        <p>Healthy protein-packed bean patty.</p>
+        <span class="price">Rs. 300</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/chilli.jpeg" alt="Chilli Burger" />
+        <h3>Chilli Burger</h3>
+        <p>Spicy & tangy burger for thrill seekers.</p>
+        <span class="price">Rs. 420</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/bison.jpeg" alt="Bison Burger" />
+        <h3>Bison Burger</h3>
+        <p>Premium bison patty with rich flavors.</p>
+        <span class="price">Rs. 550</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/beef.jpeg" alt="Beef Burger" />
+        <h3>Beef Burger</h3>
+        <p>Classic beefy goodness served fresh.</p>
+        <span class="price">Rs. 500</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/star.jpeg" alt="Shooting Star Burger" />
+        <h3>Shooting Star Burger</h3>
+        <p>Our signature best-selling special.</p>
+        <span class="price">Rs. 600</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/tall.jpg" alt="Tall Burger" />
+        <h3>Tall Burger</h3>
+        <p>Double-stacked patty for big appetites.</p>
+        <span class="price">Rs. 650</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/jimis.jpeg" alt="Jimis Burger" />
+        <h3>Jimis Burger</h3>
+        <p>Local favorite with a secret sauce twist.</p>
+        <span class="price">Rs. 480</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="resource/excheese.jpeg" alt="Extra Cheese Burger" />
+        <h3>Extra Cheese Burger</h3>
+        <p>Overflowing with layers of cheese.</p>
+        <span class="price">Rs. 550</span>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <marquee
+      >🔥 Hurry Up! | Signup for better deals | 📞 Contact: 9861599807 | 📧
+      Email: bcaburger_house@gmail.com 🔥</marquee
+    >
+
+    <!-- Search Function Script -->
+    <script>
+      // ===== MENU SEARCH FUNCTION =====
+
+      // Select elements
+      const searchInput = document.querySelector(".search-input");
+      const searchBtn = document.querySelector(".search-btn");
+      const menuGrid = document.querySelector(".menu-grid");
+      const menuCards = Array.from(document.querySelectorAll(".menu-card"));
+
+      // Function to perform search
+      function filterMenu() {
+        const query = searchInput.value.toLowerCase().trim();
+
+        // Clear the menu grid
+        menuGrid.innerHTML = "";
+
+        // Filter cards based on query
+        const filteredCards = menuCards.filter((card) =>
+          card.querySelector("h3").textContent.toLowerCase().includes(query)
+        );
+
+        // Display filtered cards or a "not found" message
+        if (filteredCards.length > 0) {
+          filteredCards.forEach((card) => menuGrid.appendChild(card));
+        } else {
+          menuGrid.innerHTML = `
+      <p style="
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #555;
+        font-size: 1.2rem;
+      ">
+        No burgers found!
+      </p>
+    `;
+        }
+      }
+
+      // Event listeners
+      searchBtn.addEventListener("click", filterMenu);
+
+      // Optional: also filter while typing
+      searchInput.addEventListener("keyup", filterMenu);
+    </script>
+  </body>
+</html>
